@@ -1,14 +1,8 @@
 package basicgraph;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-
 import util.GraphLoader;
+
+import java.util.*;
 
 /** An abstract class that implements a directed graph. 
  * The graph may have self-loops, parallel edges. 
@@ -122,7 +116,18 @@ public abstract class Graph {
 	 */
 	public List<Integer> degreeSequence() {
 		// XXX: Implement in part 1 of week 1
-		return null;
+
+		List<Integer> degreeSequence = new ArrayList<Integer>();
+		for(int i =0; i < numVertices; i++){
+			List<Integer> inNeighbors = getInNeighbors(i);
+			List<Integer> outNeighbours = getNeighbors(i);
+			int degree = inNeighbors.size() + outNeighbours.size();
+
+			degreeSequence.add(degree);
+		}
+//		Collections.sort(degreeSequence);
+		Collections.sort(degreeSequence, Collections.reverseOrder());
+		return degreeSequence;
 	}
 	
 	/**
